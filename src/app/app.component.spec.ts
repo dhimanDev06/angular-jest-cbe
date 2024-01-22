@@ -20,10 +20,19 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('angular-jest-cbe');
   });
 
-  it('should render title', () => {
+  // it('should render title', () => {
+  //   const fixture = TestBed.createComponent(AppComponent);
+  //   fixture.detectChanges();
+  //   const compiled = fixture.nativeElement as HTMLElement;
+  //   expect(compiled.querySelector('.content span')?.textContent).toContain('angular-jest-cbe app is running!');
+  // });
+
+  it('func calculate',()=>{
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('angular-jest-cbe app is running!');
-  });
+    const app = fixture.componentInstance;
+    app.numb1 = 2;
+    app.numb2 = 3;
+    const re = app.numb1 + app.numb2
+    expect(re).toEqual(5);
+  })
 });

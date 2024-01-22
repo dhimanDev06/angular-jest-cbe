@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-jest-cbe';
+  numb1:number = 3;
+  numb2:number = 6;
+  calculate(){
+    return this.numb1 + this.numb2
+  }
 }
