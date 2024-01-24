@@ -2,8 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 import { CommonService } from '../service/common.service';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpErrorResponse } from '@angular/common/http';
 
 fdescribe('HomeComponent', () => {
   let component: HomeComponent;
@@ -33,7 +34,7 @@ fdescribe('HomeComponent', () => {
   });
 
   it('should pass increse',()=>{
-    component.counter = 1
+    component.increse()
     expect(component.counter + 1).toEqual(2)
   })
 
@@ -109,9 +110,20 @@ fdescribe('HomeComponent', () => {
     const succmsg = {
       Name:'Dhiman'
     }
-
     jest.spyOn(commonServiceMock,'getApi').mockReturnValue(of(succmsg));
     fixture.detectChanges();
     expect(component.serviceData).toBe(succmsg)
   })
+
+  it('should pass callApi error',()=>{
+    const errormsg = new HttpErrorResponse({
+      error:'test 404 error',
+      status:404,
+      statusText:'Not Found'
+    })
+    jest.spyOn(commonServiceMock,'getApi').mockReturnValue(throwError(()=> errormsg));
+    component.callApi()
+    expect(component.errorMsg).toBe(errormsg)
+  })
+
 });

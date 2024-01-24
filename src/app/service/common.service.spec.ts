@@ -14,7 +14,6 @@ describe('CommonService', () => {
       ]
     });
     http = TestBed.inject(HttpClient)
-    
     service = TestBed.inject(CommonService);
   });
 
