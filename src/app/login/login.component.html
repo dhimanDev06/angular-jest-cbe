@@ -1,0 +1,25 @@
+
+<div class="container d-flex justify-content-center">
+    <div class="w-50">
+        <h3>Login Here (template-driven form)</h3>
+    <form #loginForm="ngForm">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="Enter email" [(ngModel)]="user.email">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]="user.password">
+        </div>
+        <div class="d-flex justify-content-around">
+            <button type="button" (click)="doLogin()" class="btn btn-primary">Submit</button>
+            <button type="button" (click)="reset()" class="btn btn-warning">Reset</button>
+        </div>
+        <p>
+            <a class="nav-link" routerLink="/registration">Back to Registration</a>
+        </p>
+
+    </form>
+    </div>
+</div>
