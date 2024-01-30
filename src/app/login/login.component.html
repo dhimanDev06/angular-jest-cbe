@@ -2,18 +2,25 @@
 <div class="container d-flex justify-content-center">
     <div class="w-50">
         <h3>Login Here (template-driven form)</h3>
-    <form #loginForm="ngForm">
+    <form #loginForm="ngForm" (ngSubmit)="doLogin(loginForm)" novalidate>
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                placeholder="Enter email" [(ngModel)]="user.email">
+                placeholder="Enter email" [(ngModel)]="user.email" [ngClass]="{ 'is-invalid': isSubmit && formError.email }">
+            <div *ngIf="isSubmit && formError.email" class="invalid-feedback" style="display: block;">
+                <p>Email is required</p>
+            </div>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]="user.password">
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1"
+            placeholder="Password" [(ngModel)]="user.password" [ngClass]="{ 'is-invalid': isSubmit && formError.password }">
+            <div *ngIf="isSubmit && formError.password" class="invalid-feedback" style="display: block;">
+                <p>Password is required</p>
+            </div>
         </div>
         <div class="d-flex justify-content-around">
-            <button type="button" (click)="doLogin()" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
             <button type="button" (click)="reset()" class="btn btn-warning">Reset</button>
         </div>
         <p>
